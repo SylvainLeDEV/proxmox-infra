@@ -1,0 +1,75 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram name="HDL-Network-home" id="fGfyK4vQbKrGbtqyQmc2">
+    <mxGraphModel dx="1425" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-7" edge="1" parent="1" source="y8ywMEkX7BTPEaJvPt0g-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="y8ywMEkX7BTPEaJvPt0g-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-1" parent="1" style="shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.internet;network2IconXOffset=0.0012;network2IconYOffset=0.0035;network2IconW=0.9677;network2IconH=0.7722;" value="Internet " vertex="1">
+          <mxGeometry height="50" width="62.66" x="370" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-8" edge="1" parent="1" source="y8ywMEkX7BTPEaJvPt0g-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="y8ywMEkX7BTPEaJvPt0g-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-18" edge="1" parent="1" source="y8ywMEkX7BTPEaJvPt0g-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="y8ywMEkX7BTPEaJvPt0g-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-3" parent="1" style="fillColorStyles=neutralFill;neutralFill=#9DA6A8;shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.router;network2IconXOffset=0.0001;network2IconYOffset=-0.1142;network2IconW=1;network2IconH=0.5485;" value="Box / Firewall" vertex="1">
+          <mxGeometry height="27.425" width="50" x="376.33" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-25" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="260" width="260" x="460" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-9" parent="y8ywMEkX7BTPEaJvPt0g-25" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;" value="&lt;div style=&quot;padding-top: 23px; padding-bottom: 160px;&quot;&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="260" width="260" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-10" parent="y8ywMEkX7BTPEaJvPt0g-25" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Domestic Network - LAN" vertex="1">
+          <mxGeometry height="30" width="140" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-11" parent="y8ywMEkX7BTPEaJvPt0g-25" style="fillColorStyles=neutralFill;neutralFill=#9DA6A8;shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.nas_filer;network2IconW=1;network2IconH=0.62;" value="NAS" vertex="1">
+          <mxGeometry height="31" width="50" x="10" y="41.44999999999999" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-14" parent="y8ywMEkX7BTPEaJvPt0g-25" style="shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.pc;network2IconYOffset=-0.0593;network2IconW=0.9999;network2IconH=0.7096;" value="PCs" vertex="1">
+          <mxGeometry height="35.480000000000004" width="49.995" x="10.009999999999991" y="111.44999999999999" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-15" parent="y8ywMEkX7BTPEaJvPt0g-25" style="shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.monitor;network2IconYOffset=-0.009;network2IconW=1;network2IconH=0.742;" value="TV" vertex="1">
+          <mxGeometry height="37.1" width="50" x="10.009999999999991" y="181.45" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-16" parent="y8ywMEkX7BTPEaJvPt0g-25" style="fillColorStyles=neutralFill;neutralFill=#9DA6A8;shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.mainframe;network2IconW=0.4721;network2IconH=1;" value="Proxmox - HOST" vertex="1">
+          <mxGeometry height="50" width="23.605" x="139.99999999999997" y="61.45" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-35" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="157.55" width="157.55" x="180" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-17" parent="y8ywMEkX7BTPEaJvPt0g-35" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="157.55" width="157.55" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-20" parent="y8ywMEkX7BTPEaJvPt0g-35" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="DMZ" vertex="1">
+          <mxGeometry height="30" width="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-21" parent="y8ywMEkX7BTPEaJvPt0g-35" style="shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.desktop_pc;network2IconXOffset=-0.0034;network2IconYOffset=0.00035;network2IconW=0.453;network2IconH=0.9995;" value="VM - Revers Proxy" vertex="1">
+          <mxGeometry height="49.975" width="22.650000000000002" x="60" y="57.55000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-36" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="260" width="260" x="827" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-23" parent="y8ywMEkX7BTPEaJvPt0g-36" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;" value="&lt;div style=&quot;padding-top: 23px; padding-bottom: 160px;&quot;&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="260" width="260" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-33" parent="y8ywMEkX7BTPEaJvPt0g-36" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="isolated&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="140" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-34" parent="y8ywMEkX7BTPEaJvPt0g-36" style="shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#EDEDED;strokeColor=#000000;gradientColor=#5B6163;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.desktop_pc;network2IconXOffset=-0.0034;network2IconYOffset=0.00035;network2IconW=0.453;network2IconH=0.9995;" value="VM - JellyFin - Torrent" vertex="1">
+          <mxGeometry height="49.975" width="22.650000000000002" x="58.67999999999995" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="y8ywMEkX7BTPEaJvPt0g-37" edge="1" parent="1" source="y8ywMEkX7BTPEaJvPt0g-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="y8ywMEkX7BTPEaJvPt0g-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

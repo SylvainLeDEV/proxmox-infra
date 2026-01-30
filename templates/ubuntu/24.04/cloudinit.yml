@@ -1,0 +1,31 @@
+#cloud-config
+
+# --- User & SSH ---
+users:
+  - default
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: [sudo]
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAA...
+
+disable_root: true
+ssh_pwauth: false
+
+# --- Base system updates & packages ---
+package_update: true
+package_upgrade: true
+
+packages:
+  - qemu-guest-agent
+  - curl
+  - git
+  - htop
+
+# --- First boot commands ---
+runcmd:
+  # Make sure the guest agent is enabled AND started on first boot
+  - systemctl enable --now qemu-guest-agent
+
+final_message: "cloud-init finished in $UPTIME seconds"
