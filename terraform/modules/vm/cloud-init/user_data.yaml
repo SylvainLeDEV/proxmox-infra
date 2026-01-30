@@ -11,7 +11,10 @@ users:
     shell: /bin/bash
     ssh_import_id: []
     lock_passwd: true
-    ssh_authorized_keys: []
+    ssh_authorized_keys:
+%{ if ssh_public_key != "" ~}
+      - ${ssh_public_key}
+%{ endif ~}
 
 package_update: true
 package_upgrade: true

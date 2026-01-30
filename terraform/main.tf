@@ -12,13 +12,13 @@ module "vm_reverse_proxy" {
   template_tag     = var.template_tag
 
   vm_config = {
-    hostname = "webserver"
+    hostname = "reverse-proxy"
     domain   = var.domain
     on_boot  = true
-    tags     = ["web", "production"]
+    tags     = ["reverse-proxy"]
 
     cpu = {
-      cores   = 4
+      cores   = 2
       sockets = 1
     }
 
@@ -26,19 +26,12 @@ module "vm_reverse_proxy" {
 
     disk = {
       storage = "local-lvm"
-      size    = 20
+      size    = 10
     }
-
-    additional_disks = [
-      {
-        storage = "local-lvm"
-        size    = 50
-      }
-    ]
 
     cloud_init = {
       enabled = true
-      user    = "sysadmin"
+      user    = "ubuntu"
     }
   }
 }

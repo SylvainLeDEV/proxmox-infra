@@ -56,11 +56,11 @@ cd terraform
 # 3. Initialize
 terraform init
 
-# 4. Plan (dev environment)
-terraform plan -var-file=environments/dev/terraform.tfvars
+# 4. Plan (homelab environment)
+terraform plan -var-file=environments/homelab/terraform.tfvars
 
 # 5. Deploy
-terraform apply -var-file=environments/dev/terraform.tfvars
+terraform apply -var-file=environments/homelab/terraform.tfvars
 ```
 
 ## 🚀 Deploying VMs

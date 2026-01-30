@@ -47,3 +47,21 @@ output "vm_tags" {
   description = "VM tags"
   value       = var.vm_config.tags
 }
+
+# Primary IPv4 address - take first non-localhost IP
+output "ipv4_addresses" {
+  description = "Primary IPv4 address (first valid IP)"
+  value = try(
+    [
+      for ip in flatten(proxmox_virtual_environment_vm.vm.ipv4_addresses) :
+      ip
+      if ip != "127.0.0.1" && !startswith(ip, "169.254.")
+    ][0],
+    null
+  )
+}
+
+output "debug_ssh_public_key" {
+  value     = local.ssh_public_key
+  sensitive = true
+}

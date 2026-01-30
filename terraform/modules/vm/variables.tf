@@ -37,7 +37,7 @@ variable "vm_config" {
     # Cloud-init Configuration
     cloud_init = optional(object({
       enabled = optional(bool, true)
-      user    = optional(string, "sysadmin")
+      user    = optional(string, "ubuntu")
     }), {})
   })
 

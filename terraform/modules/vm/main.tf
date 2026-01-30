@@ -1,5 +1,17 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source  = "bpg/proxmox"
+      version = ">= 0.7.0"
+    }
+  }
+}
+
 locals {
   full_hostname = var.vm_config.domain != "" ? "${var.vm_config.hostname}.${var.vm_config.domain}" : var.vm_config.hostname
+
+  # Read SSH public key from local machine
+  ssh_public_key = try(file("~/.ssh/id_rsa.pub"), try(file("~/.ssh/id_ed25519.pub"), ""))
 
   # Default CPU configuration
   cpu_config = merge(
@@ -33,7 +45,10 @@ locals {
   cloud_init_config = merge(
     {
       enabled = true
-      user    = "sysadmin"
+      user    = "ubuntu"
+      wait_for_ip = {
+        ipv4 = true
+      }
     },
     var.vm_config.cloud_init
   )
@@ -55,9 +70,10 @@ resource "proxmox_virtual_environment_file" "cloud_user_config" {
 
   source_raw {
     data = templatefile("${path.module}/cloud-init/user_data.yaml", {
-      hostname = var.vm_config.hostname
-      domain   = var.vm_config.domain
-      username = local.cloud_init_config.user
+      hostname       = var.vm_config.hostname
+      domain         = var.vm_config.domain
+      username       = local.cloud_init_config.user
+      ssh_public_key = local.ssh_public_key
     })
 
     file_name = "${local.full_hostname}-ci-user.yml"
@@ -89,6 +105,11 @@ resource "proxmox_virtual_environment_vm" "vm" {
   on_boot   = var.vm_config.on_boot
   tags      = var.vm_config.tags
 
+  # Clone from template - this ensures bootable disk
+  clone {
+    vm_id = data.proxmox_virtual_environment_vms.template.vms[0].vm_id
+  }
+
   # QEMU Agent
   agent {
     enabled = true
@@ -116,7 +137,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
   boot_order    = ["scsi0"]
   scsi_hardware = "virtio-scsi-single"
 
-  # Primary Disk
+  # Primary Disk - Resize the cloned disk to desired size
   disk {
     interface    = "scsi0"
     iothread     = true
@@ -125,7 +146,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     discard      = "ignore"
   }
 
-  # Additional Disks - Dynamic Block
+  # Additional Disks - Dynamic Block (if needed)
   dynamic "disk" {
     for_each = var.vm_config.additional_disks
     content {
