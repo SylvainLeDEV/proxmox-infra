@@ -47,7 +47,3 @@ output "vm_tags" {
   description = "VM tags"
   value       = var.vm_config.tags
 }
-
-output "vm_ip" {
-  value = proxmox_virtual_environment_vm.vm.ipv4_addresses[0]
-}
