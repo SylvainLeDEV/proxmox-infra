@@ -1,0 +1,30 @@
+#cloud-config
+hostname: ${hostname}
+%{ if domain != "" ~}
+fqdn: ${hostname}.${domain}
+%{ endif ~}
+manage_etc_hosts: true
+
+users:
+  - name: ${username}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_import_id: []
+    lock_passwd: true
+    ssh_authorized_keys: []
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - qemu-guest-agent
+  - openssh-server
+  - curl
+  - wget
+  - net-tools
+  - vim
+  - git
+
+runcmd:
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent

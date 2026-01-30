@@ -1,124 +1,85 @@
-data "proxmox_virtual_environment_vms" "template" {
-  node_name = var.target_node
-  tags      = ["template", var.template_tag]
-}
+# =============================================================================
+# Proxmox Infrastructure - Root Module
+# =============================================================================
+# This module orchestrates the deployment of virtual machines on Proxmox VE.
+# Uses reusable modules for better maintainability and scalability.
+# =============================================================================
 
+module "vm_reverse_proxy" {
+  source = "./modules/vm"
 
-resource "proxmox_virtual_environment_file" "cloud_user_config" {
-  content_type = "snippets"
-  datastore_id = "local"
-  node_name    = var.target_node
+  proxmox_node     = var.proxmox_node
+  template_tag     = var.template_tag
 
-  source_raw {
-    data = templatefile("${path.module}/cloud-init/user_data.yaml",
+  vm_config = {
+    hostname = "webserver"
+    domain   = var.domain
+    on_boot  = true
+    tags     = ["web", "production"]
+
+    cpu = {
+      cores   = 4
+      sockets = 1
+    }
+
+    memory = 4096
+
+    disk = {
+      storage = "local-lvm"
+      size    = 20
+    }
+
+    additional_disks = [
       {
-        hostname = var.vm_hostname
-        domain   = var.domain
+        storage = "local-lvm"
+        size    = 50
       }
-    )
-
-    file_name = "${var.vm_hostname}.${var.domain}-ci-user.yml"
-  }
-  # source_raw {
-  #   data = file("cloud-init/user_data")
-
-  #   file_name = "${var.vm_hostname}.${var.domain}-ci-user.yml"
-  # }
-}
-
-resource "proxmox_virtual_environment_file" "cloud_meta_config" {
-  content_type = "snippets"
-  datastore_id = "local"
-  node_name    = var.target_node
-
-  source_raw {
-    data = templatefile("${path.module}/cloud-init/meta_data.yaml",
-      {
-        instance_id    = sha1(var.vm_hostname)
-        local_hostname = var.vm_hostname
-      }
-    )
-
-    file_name = "${var.vm_hostname}.${var.domain}-ci-meta_data.yml"
-  }
-}
-
-resource "proxmox_virtual_environment_vm" "vm" {
-  name      = var.domain != "" ? "${var.vm_hostname}.${var.domain}" : var.vm_hostname
-  node_name = var.target_node
-
-  on_boot = var.onboot
-
-  agent {
-    enabled = true
-  }
-
-  tags = var.vm_tags
-
-  cpu {
-    type    = "x86-64-v2-AES"
-    cores   = var.cores
-    sockets = var.sockets
-    flags   = []
-  }
-
-  memory {
-    dedicated = var.memory
-  }
-
-  network_device {
-    bridge = "vmbr0"
-    model  = "virtio"
-  }
-
-  # Ignore changes to the network
-  ## MAC address is generated on every apply, causing
-  ## TF to think this needs to be rebuilt on every apply
-  lifecycle {
-    ignore_changes = [
-      network_device,
     ]
-  }
 
-  boot_order    = ["scsi0"]
-  scsi_hardware = "virtio-scsi-single"
-
-  disk {
-    interface    = "scsi0"
-    iothread     = true
-    datastore_id = var.disk.storage
-    size         = var.disk.size
-    discard      = "ignore"
-  }
-
-  dynamic "disk" {
-    for_each = var.additionnal_disks
-    content {
-      interface    = "scsi${1 + disk.key}"
-      iothread     = true
-      datastore_id = disk.value.storage
-      size         = disk.value.size
-      discard      = "ignore"
-      file_format  = "raw"
+    cloud_init = {
+      enabled = true
+      user    = "sysadmin"
     }
   }
-
-  clone {
-    vm_id = data.proxmox_virtual_environment_vms.template.vms[0].vm_id
-  }
-
-  initialization {
-    # ip_config {
-    #   ipv4 {
-    #     address = "dhcp"
-    #   }
-    # }
-
-    datastore_id      = var.disk.storage
-    interface         = "ide2"
-    user_data_file_id = proxmox_virtual_environment_file.cloud_user_config.id
-    meta_data_file_id = proxmox_virtual_environment_file.cloud_meta_config.id
-  }
-
-
 }
+
+# Example VM Deployment - Database Server
+# Uncomment and modify as needed for additional VMs
+#
+# module "vm_database" {
+#   source = "./modules/vm"
+#
+#   proxmox_node     = var.proxmox_node
+#   template_tag     = var.template_tag
+#
+#   vm_config = {
+#     hostname = "database"
+#     domain   = var.domain
+#     on_boot  = true
+#     tags     = ["database", "production"]
+#
+#     cpu = {
+#       cores   = 8
+#       sockets = 2
+#     }
+#
+#     memory = 16384
+#
+#     disk = {
+#       storage = "local-lvm"
+#       size    = 100
+#     }
+#
+#     additional_disks = [
+#       {
+#         storage = "local-lvm"
+#         size    = 200
+#       }
+#     ]
+#
+#     cloud_init = {
+#       enabled = true
+#       user    = "sysadmin"
+#     }
+#   }
+# }
